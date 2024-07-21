@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'de.senf'
+version '1.0-SNAPSHOT'
+
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.papermc.io/repository/maven-public/'
+    }
+    maven {
+        url 'https://repo.lucko.me/'
+    }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT'
+    compileOnly 'net.luckperms:api:5.4'
+}
+
+shadowJar {
+
+    archiveClassifier.set('')
+    configurations = [project.configurations.runtimeClasspath]
+
+
+    relocate 'org.bukkit', 'de.senf.shaded.org.bukkit'
+    relocate 'net.luckperms', 'de.senf.shaded.net.luckperms'
+}
+tasks.build.dependsOn shadowJar

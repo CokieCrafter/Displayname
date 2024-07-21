@@ -1,0 +1,7 @@
+name: Displayname
+version: 1.0
+main: de.senf.displayname.Displayname
+commands:
+  setdisplayname:
+    description: Setzt den Displayname und einen Prefix
+    usage: /setdisplayname <Spieler> <Prefix> <Wort>
